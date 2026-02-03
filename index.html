@@ -14,9 +14,34 @@
     }
 
     body {
-      background: #000000;
-      color: #ffffff;
+      background: #000;
+      color: #fff;
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* CURSOR LIGHT */
+    .cursor-light {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      pointer-events: none;
+      background: radial-gradient(
+        circle,
+        rgba(255,255,255,0.12) 0%,
+        rgba(255,255,255,0.08) 20%,
+        rgba(255,255,255,0.04) 40%,
+        rgba(255,255,255,0.02) 60%,
+        rgba(255,255,255,0) 70%
+      );
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      transition: transform 0.15s ease-out;
+    }
+
+    section, footer {
+      position: relative;
+      z-index: 1;
     }
 
     section {
@@ -26,9 +51,9 @@
     }
 
     h1, h2 {
-      color: #ffffff;
       font-weight: 700;
       letter-spacing: -0.5px;
+      color: #fff;
     }
 
     p {
@@ -52,7 +77,7 @@
     .hero p {
       font-size: 18px;
       margin-top: 12px;
-      color: #aaaaaa;
+      color: #aaa;
     }
 
     /* ABOUT */
@@ -77,7 +102,7 @@
       background: #111;
       border: 1px solid #222;
       overflow: hidden;
-      transition: 0.3s;
+      transition: transform 0.4s ease, border-color 0.4s ease;
     }
 
     .card img {
@@ -85,17 +110,23 @@
       height: 200px;
       object-fit: cover;
       filter: grayscale(100%);
+      transition: filter 0.4s ease, transform 0.4s ease;
     }
 
     .card p {
       padding: 15px;
-      color: #cccccc;
       font-size: 14px;
+      color: #ccc;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
       border-color: #fff;
+    }
+
+    .card:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.05);
     }
 
     /* CONTACT */
@@ -108,10 +139,10 @@
       display: inline-block;
       margin-top: 15px;
       text-decoration: none;
-      color: #ffffff;
-      border-bottom: 2px solid #ffffff;
+      color: #fff;
+      border-bottom: 2px solid #fff;
       padding-bottom: 4px;
-      transition: 0.3s;
+      transition: opacity 0.3s ease;
     }
 
     .contact a:hover {
@@ -129,6 +160,9 @@
 </head>
 
 <body>
+
+  <!-- CURSOR LIGHT -->
+  <div class="cursor-light"></div>
 
   <!-- HERO -->
   <section class="hero">
@@ -190,6 +224,26 @@
     © 2026 Ajay The Designer
   </footer>
 
+  <!-- CURSOR SCRIPT -->
+  <script>
+    const light = document.querySelector('.cursor-light');
+    let mouseX = 0, mouseY = 0;
+    let currentX = 0, currentY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animate() {
+      currentX += (mouseX - currentX) * 0.12;
+      currentY += (mouseY - currentY) * 0.12;
+      light.style.left = currentX + 'px';
+      light.style.top = currentY + 'px';
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
 </body>
 </html>
-
