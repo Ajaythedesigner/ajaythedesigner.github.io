@@ -4,32 +4,163 @@
   <meta charset="UTF-8">
   <title>Ajay The Designer | Graphic Designer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #ffffff;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.6;
+    }
+
+    section {
+      padding: 100px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      color: #333333;
+      max-width: 700px;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
       text-align: center;
     }
-    h1 {
-      font-size: 42px;
+
+    .hero h1 {
+      font-size: 52px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-top: 12px;
+      color: #555;
+    }
+
+    /* ABOUT */
+    .about h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    /* WORKS */
+    .works h2 {
+      font-size: 32px;
+      margin-bottom: 50px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      border: 1px solid #000;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    /* CONTACT */
+    .contact h2 {
+      font-size: 32px;
       margin-bottom: 10px;
     }
-    p {
-      font-size: 18px;
-      color: #cccccc;
+
+    .contact a {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #000;
+      border-bottom: 2px solid #000;
+      padding-bottom: 4px;
+      transition: 0.3s;
+    }
+
+    .contact a:hover {
+      opacity: 0.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 14px;
+      color: #777;
+      border-top: 1px solid #000;
     }
   </style>
 </head>
+
 <body>
-  <div>
-    <h1>Ajay The Designer</h1>
-    <p>Graphic Designer</p>
-  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Ajay The Designer</h1>
+      <p>Graphic Designer</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <h2>About</h2>
+    <p>
+      I’m Ajay, a graphic designer who believes in simplicity and clarity.
+      I create clean, black & white focused designs that communicate
+      ideas effectively and look timeless.
+    </p>
+  </section>
+
+  <!-- WORKS -->
+  <section class="works">
+    <h2>Selected Works</h2>
+    <div class="grid">
+      <div class="card">Poster Design</div>
+      <div class="card">Brand Identity</div>
+      <div class="card">Social Media</div>
+      <div class="card">Logo Design</div>
+      <div class="card">Banner Design</div>
+      <div class="card">Creative Layouts</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>Open for freelance and collaborations.</p>
+    <a href="mailto:ajay@email.com">ajay@email.com</a>
+  </section>
+
+  <footer>
+    © 2026 Ajay The Designer
+  </footer>
+
 </body>
 </html>
