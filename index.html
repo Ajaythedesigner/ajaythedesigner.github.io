@@ -1,256 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Ajay The Designer | Graphic Designer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Ajay The Designer | Interactive Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SPLINE VIEWER -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.50/build/spline-viewer.js"></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-    }
+body {
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
 
-    body {
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
-    }
+/* TORCH DARK OVERLAY */
+.darkness {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 200px at var(--x, 50%) var(--y, 50%),
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.7) 40%,
+    rgba(0,0,0,0.95) 70%
+  );
+  transition: background 0.05s linear;
+  z-index: 5;
+}
 
-    /* CURSOR LIGHT */
-    .cursor-light {
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      pointer-events: none;
-      background: radial-gradient(
-        circle,
-        rgba(255,255,255,0.12) 0%,
-        rgba(255,255,255,0.06) 30%,
-        rgba(255,255,255,0.02) 50%,
-        rgba(255,255,255,0) 70%
-      );
-      transform: translate(-50%, -50%);
-      z-index: 1;
-    }
+/* TORCH STICK */
+.torch {
+  position: fixed;
+  width: 8px;
+  height: 80px;
+  background: linear-gradient(#5a2d0c, #2b1406);
+  border-radius: 4px;
+  transform-origin: bottom center;
+  pointer-events: none;
+  z-index: 6;
+}
 
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 100px 20px;
-      position: relative;
-      z-index: 2;
-    }
+/* FIRE */
+.fire {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 40px;
+  background: radial-gradient(circle at 50% 70%, #ff0, #ff6a00, #ff0000);
+  border-radius: 50% 50% 50% 50%;
+  animation: flicker 0.15s infinite alternate;
+}
 
-    h1, h2 {
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+  100% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+}
 
-    p {
-      color: #bdbdbd;
-      max-width: 700px;
-      line-height: 1.7;
-    }
+/* CONTENT */
+section {
+  max-width: 1000px;
+  margin: auto;
+  padding: 120px 20px;
+}
 
-    /* HERO */
-    .hero {
-      height: 100vh;
-      position: relative;
-    }
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
-    spline-viewer {
-      width: 100%;
-      height: 100%;
-    }
+.hero h1 {
+  font-size: 56px;
+}
 
-    .hero-text {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      pointer-events: none;
-    }
+.hero p {
+  margin-top: 10px;
+  color: #bbb;
+}
 
-    .hero-text h1 {
-      font-size: 56px;
-    }
+h2 {
+  margin-bottom: 20px;
+  font-size: 32px;
+}
 
-    .hero-text p {
-      margin-top: 10px;
-      color: #aaa;
-      font-size: 18px;
-    }
+p {
+  max-width: 700px;
+  line-height: 1.7;
+  color: #ccc;
+}
 
-    /* ABOUT */
-    .about h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
+/* WORKS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
 
-    /* WORKS */
-    .works h2 {
-      font-size: 32px;
-      margin-bottom: 50px;
-    }
+.card {
+  background: #111;
+  border: 1px solid #222;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
 
-    .card {
-      background: #111;
-      border: 1px solid #222;
-      overflow: hidden;
-      transition: transform 0.4s ease, border-color 0.4s ease;
-    }
+.card p {
+  padding: 12px;
+  font-size: 14px;
+}
 
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      filter: grayscale(100%);
-      transition: 0.4s ease;
-    }
+/* RESUME */
+.resume {
+  border-left: 2px dashed #444;
+  padding-left: 20px;
+}
 
-    .card p {
-      padding: 15px;
-      font-size: 14px;
-      color: #ccc;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: #fff;
-    }
-
-    .card:hover img {
-      filter: grayscale(0%);
-      transform: scale(1.05);
-    }
-
-    /* CONTACT */
-    .contact h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    .contact a {
-      display: inline-block;
-      margin-top: 15px;
-      color: #fff;
-      text-decoration: none;
-      border-bottom: 2px solid #fff;
-      padding-bottom: 4px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #777;
-      font-size: 14px;
-      border-top: 1px solid #222;
-    }
-  </style>
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 40px;
+  font-size: 14px;
+  color: #777;
+  border-top: 1px solid #222;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- CURSOR LIGHT -->
-  <div class="cursor-light"></div>
+<div class="darkness"></div>
 
-  <!-- HERO WITH SPLINE -->
-  <section class="hero">
-    <spline-viewer url="https://prod.spline.design/P-z4QyUWoYo1P7eD/scene.splinecode"></spline-viewer>
+<div class="torch" id="torch">
+  <div class="fire"></div>
+</div>
 
-    <div class="hero-text">
-      <h1>Ajay The Designer</h1>
-      <p>Graphic Designer</p>
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Ajay The Designer</h1>
+    <p>Exploring design through light & darkness</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <h2>About</h2>
+  <p>
+    I’m Ajay, a graphic designer who believes design should be felt, not just seen.
+    This portfolio is an experiment — like entering a cave with a torch,
+    discovering ideas one by one.
+  </p>
+</section>
+
+<!-- WORKS -->
+<section>
+  <h2>Selected Works</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="https://picsum.photos/600/400?random=21">
+      <p>Brand Identity</p>
     </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="about">
-    <h2>About</h2>
-    <p>
-      I’m Ajay, a graphic designer focused on clean, minimal and timeless
-      visual design. I work mainly in black & white aesthetics, creating
-      designs that communicate ideas clearly and powerfully.
-    </p>
-  </section>
-
-  <!-- WORKS -->
-  <section class="works">
-    <h2>Selected Works</h2>
-
-    <div class="grid">
-      <div class="card">
-        <img src="https://picsum.photos/600/400?random=11" />
-        <p>Poster Design</p>
-      </div>
-      <div class="card">
-        <img src="https://picsum.photos/600/400?random=12" />
-        <p>Brand Identity</p>
-      </div>
-      <div class="card">
-        <img src="https://picsum.photos/600/400?random=13" />
-        <p>Social Media Design</p>
-      </div>
-      <div class="card">
-        <img src="https://picsum.photos/600/400?random=14" />
-        <p>Logo Design</p>
-      </div>
-      <div class="card">
-        <img src="https://picsum.photos/600/400?random=15" />
-        <p>Banner Design</p>
-      </div>
-      <div class="card">
-        <img src="https://picsum.photos/600/400?random=16" />
-        <p>Creative Layout</p>
-      </div>
+    <div class="card">
+      <img src="https://picsum.photos/600/400?random=22">
+      <p>Poster Design</p>
     </div>
-  </section>
+    <div class="card">
+      <img src="https://picsum.photos/600/400?random=23">
+      <p>Social Media</p>
+    </div>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section class="contact">
-    <h2>Contact</h2>
-    <p>Available for freelance & collaborations.</p>
-    <a href="mailto:ajay@email.com">ajay@email.com</a>
-  </section>
+<!-- RESUME -->
+<section>
+  <h2>Resume</h2>
+  <div class="resume">
+    <p><strong>Experience:</strong> 3+ Years</p>
+    <p><strong>Skills:</strong> Branding, Posters, UI Basics, Typography</p>
+    <p><strong>Tools:</strong> Photoshop, Illustrator, Figma</p>
+  </div>
+</section>
 
-  <footer>
-    © 2026 Ajay The Designer
-  </footer>
+<footer>
+© 2026 Ajay The Designer
+</footer>
 
-  <!-- CURSOR SCRIPT -->
-  <script>
-    const light = document.querySelector(".cursor-light");
-    let mx = 0, my = 0, cx = 0, cy = 0;
+<script>
+const darkness = document.querySelector('.darkness');
+const torch = document.getElementById('torch');
 
-    document.addEventListener("mousemove", e => {
-      mx = e.clientX;
-      my = e.clientY;
-    });
+document.addEventListener('mousemove', e => {
+  const x = e.clientX;
+  const y = e.clientY;
 
-    function animate() {
-      cx += (mx - cx) * 0.1;
-      cy += (my - cy) * 0.1;
-      light.style.left = cx + "px";
-      light.style.top = cy + "px";
-      requestAnimationFrame(animate);
-    }
-    animate();
-  </script>
+  darkness.style.setProperty('--x', x + 'px');
+  darkness.style.setProperty('--y', y + 'px');
+
+  torch.style.left = x + 'px';
+  torch.style.top = y + 'px';
+});
+</script>
 
 </body>
 </html>
