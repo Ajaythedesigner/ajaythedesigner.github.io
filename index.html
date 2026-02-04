@@ -1,317 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Ajay The Designer | Graphic Designer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>Ajay — Graphic Designer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- CLASH GROTESK FONT -->
-<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600&display=swap" rel="stylesheet">
+  <!-- FONT -->
+  <style>
+    @font-face {
+      font-family: 'Clash Grotesk';
+      src: local('Clash Grotesk'), local('ClashGrotesk');
+      font-weight: 400;
+    }
 
-<style>
-:root {
-  --black: #000000;
-  --white: #ffffff;
-  --grey: #bdbdbd;
-  --line: #e5e5e5;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Clash Grotesk', sans-serif;
+    }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Clash Grotesk', sans-serif;
-}
+    body {
+      background: #ffffff;
+      color: #000000;
+    }
 
-body {
-  background: var(--white);
-  color: var(--black);
-  line-height: 1.7;
-}
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 20px;
+    }
 
-/* ================= NAV ================= */
-header {
-  max-width: 1200px;
-  margin: auto;
-  padding: 30px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    h1, h2, h3 {
+      font-weight: 600;
+    }
 
-.logo {
-  font-weight: 600;
-  font-size: 20px;
-}
+    p {
+      color: #555;
+      max-width: 650px;
+      line-height: 1.6;
+    }
 
-nav a {
-  margin-left: 30px;
-  text-decoration: none;
-  color: var(--black);
-  font-weight: 500;
-  font-size: 15px;
-}
+    /* NAV */
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-/* ================= HERO ================= */
-.hero {
-  max-width: 1200px;
-  margin: auto;
-  padding: 140px 20px 120px;
-}
+    nav a {
+      text-decoration: none;
+      color: #000;
+      margin-left: 30px;
+      font-weight: 500;
+    }
 
-.hero h1 {
-  font-size: 64px;
-  font-weight: 600;
-  letter-spacing: -1px;
-}
+    /* HERO */
+    .hero h1 {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
 
-.hero p {
-  margin-top: 20px;
-  max-width: 520px;
-  color: #555;
-  font-size: 18px;
-}
+    .hero p {
+      font-size: 18px;
+    }
 
-.hero .btn {
-  display: inline-block;
-  margin-top: 40px;
-  padding: 14px 28px;
-  border: 1px solid var(--black);
-  text-decoration: none;
-  color: var(--black);
-  font-weight: 500;
-  font-size: 15px;
-}
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 28px;
+      border: 1px solid #000;
+      color: #000;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-/* ================= SECTION ================= */
-section {
-  max-width: 1200px;
-  margin: auto;
-  padding: 120px 20px;
-  border-top: 1px solid var(--line);
-}
+    /* WORK GRID */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
 
-section h2 {
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 30px;
-}
+    .work-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #eaeaea;
+      object-fit: cover;
+    }
 
-section p {
-  max-width: 700px;
-  color: #444;
-}
+    .work-card h3 {
+      margin-top: 15px;
+      font-size: 18px;
+    }
 
-/* ================= SERVICES ================= */
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 40px;
-  margin-top: 40px;
-}
+    .work-card span {
+      font-size: 14px;
+      color: #777;
+    }
 
-.service h3 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.service p {
-  font-size: 15px;
-}
-
-/* ================= WORKS ================= */
-.works {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-  margin-top: 50px;
-}
-
-.work {
-  border-top: 1px solid var(--black);
-  padding-top: 20px;
-}
-
-.work h4 {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.work span {
-  font-size: 14px;
-  color: #666;
-}
-
-/* ================= RESUME ================= */
-.resume {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 60px;
-}
-
-.resume h3 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.resume ul {
-  list-style: none;
-}
-
-.resume li {
-  margin-bottom: 10px;
-  color: #444;
-  font-size: 15px;
-}
-
-/* ================= CONTACT ================= */
-.contact a {
-  display: inline-block;
-  margin-top: 20px;
-  font-weight: 500;
-  color: var(--black);
-  text-decoration: none;
-  border-bottom: 1px solid var(--black);
-}
-
-/* ================= FOOTER ================= */
-footer {
-  max-width: 1200px;
-  margin: auto;
-  padding: 60px 20px;
-  border-top: 1px solid var(--line);
-  font-size: 14px;
-  color: #666;
-}
-</style>
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #777;
+      border-top: 1px solid #eee;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<header>
-  <div class="logo">Ajay.</div>
+  <!-- NAV -->
   <nav>
-    <a href="#about">About</a>
-    <a href="#work">Work</a>
-    <a href="#resume">Resume</a>
-    <a href="#contact">Contact</a>
+    <strong>Ajay.</strong>
+    <div>
+      <a href="#">About</a>
+      <a href="#">Work</a>
+      <a href="#">Resume</a>
+      <a href="#">Contact</a>
+    </div>
   </nav>
-</header>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Graphic Designer</h1>
-  <p>
-    I design clean, minimal and timeless visual experiences
-    focused on clarity, typography and balance.
-  </p>
-  <a class="btn" href="#contact">Get Started</a>
-</div>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Graphic Designer</h1>
+    <p>
+      I design clean, minimal and timeless visual experiences focused on
+      clarity, typography and balance.
+    </p>
+    <a href="#" class="btn">Get Started</a>
+  </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2>About Me</h2>
-  <p>
-    I’m Ajay, a graphic designer passionate about minimal design,
-    strong typography and visual storytelling.
-    My approach focuses on simplicity, clarity and purpose.
-  </p>
-</section>
+  <!-- ABOUT -->
+  <section>
+    <h2>About Me</h2>
+    <p>
+      I’m Ajay, a graphic designer passionate about minimal design, strong
+      typography and visual storytelling. My approach focuses on simplicity,
+      clarity and purpose.
+    </p>
+  </section>
 
-<!-- SERVICES -->
-<section>
-  <h2>What I Do</h2>
-  <div class="services">
-    <div class="service">
-      <h3>Brand Identity</h3>
-      <p>Logos, brand systems and visual language.</p>
-    </div>
-    <div class="service">
-      <h3>Graphic Design</h3>
-      <p>Posters, banners and marketing creatives.</p>
-    </div>
-    <div class="service">
-      <h3>Social Media</h3>
-      <p>Creative content designed for engagement.</p>
-    </div>
-    <div class="service">
-      <h3>UI Visual Design</h3>
-      <p>Clean layouts and landing page concepts.</p>
-    </div>
-  </div>
-</section>
+  <!-- WORK -->
+  <section>
+    <h2>Selected Work</h2>
 
-<!-- WORK -->
-<section id="work">
-  <h2>Selected Work</h2>
-  <div class="works">
-    <div class="work">
-      <h4>Brand Identity System</h4>
-      <span>Branding</span>
-    </div>
-    <div class="work">
-      <h4>Poster Design Series</h4>
-      <span>Print Design</span>
-    </div>
-    <div class="work">
-      <h4>Social Media Campaign</h4>
-      <span>Digital</span>
-    </div>
-    <div class="work">
-      <h4>Logo Exploration</h4>
-      <span>Identity</span>
-    </div>
-  </div>
-</section>
+    <div class="work-grid">
+      <div class="work-card">
+        <img src="https://via.placeholder.com/600x600?text=Work+01">
+        <h3>Brand Identity System</h3>
+        <span>Branding</span>
+      </div>
 
-<!-- RESUME -->
-<section id="resume">
-  <h2>Resume</h2>
-  <div class="resume">
-    <div>
-      <h3>Experience</h3>
-      <ul>
-        <li>Graphic Designer – 3+ Years</li>
-        <li>Freelance Designer</li>
-        <li>Worked with startups & brands</li>
-      </ul>
+      <div class="work-card">
+        <img src="https://via.placeholder.com/600x600?text=Work+02">
+        <h3>Poster Design Series</h3>
+        <span>Print Design</span>
+      </div>
+
+      <div class="work-card">
+        <img src="https://via.placeholder.com/600x600?text=Work+03">
+        <h3>Social Media Campaign</h3>
+        <span>Digital</span>
+      </div>
+
+      <div class="work-card">
+        <img src="https://via.placeholder.com/600x600?text=Work+04">
+        <h3>Logo Exploration</h3>
+        <span>Identity</span>
+      </div>
     </div>
+  </section>
 
-    <div>
-      <h3>Skills</h3>
-      <ul>
-        <li>Branding & Typography</li>
-        <li>Layout & Composition</li>
-        <li>Creative Direction</li>
-        <li>UI Visual Design</li>
-      </ul>
-    </div>
-
-    <div>
-      <h3>Tools</h3>
-      <ul>
-        <li>Photoshop</li>
-        <li>Illustrator</li>
-        <li>Figma</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="contact">
-  <h2>Contact</h2>
-  <p>Available for freelance & collaborations.</p>
-  <a href="mailto:ajay@email.com">ajay@email.com</a>
-</section>
-
-<footer>
-© 2026 Ajay The Designer
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Ajay — Graphic Designer
+  </footer>
 
 </body>
 </html>
-
