@@ -6,136 +6,182 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Helvetica Neue",Arial,sans-serif;
 }
 
-body {
-  background: #000;
-  color: #fff;
-  overflow-x: hidden;
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+  cursor:none;
 }
 
-/* TORCH DARK OVERLAY */
-.darkness {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle 200px at var(--x, 50%) var(--y, 50%),
+/* ================= TORCH DARKNESS ================= */
+.darkness{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(
+    circle 380px at var(--x,50%) var(--y,50%),
     rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.7) 40%,
-    rgba(0,0,0,0.95) 70%
+    rgba(0,0,0,0.2) 25%,
+    rgba(0,0,0,0.6) 55%,
+    rgba(0,0,0,0.95) 80%
   );
-  transition: background 0.05s linear;
-  z-index: 5;
+  z-index:5;
 }
 
-/* TORCH STICK */
-.torch {
-  position: fixed;
-  width: 8px;
-  height: 80px;
-  background: linear-gradient(#5a2d0c, #2b1406);
-  border-radius: 4px;
-  transform-origin: bottom center;
-  pointer-events: none;
-  z-index: 6;
+/* ================= TORCH ================= */
+.torch{
+  position:fixed;
+  width:10px;
+  height:90px;
+  background:linear-gradient(#6b3a12,#2b1406);
+  border-radius:6px;
+  pointer-events:none;
+  z-index:6;
 }
 
-/* FIRE */
-.fire {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 40px;
-  background: radial-gradient(circle at 50% 70%, #ff0, #ff6a00, #ff0000);
-  border-radius: 50% 50% 50% 50%;
-  animation: flicker 0.15s infinite alternate;
+.fire{
+  position:absolute;
+  top:-45px;
+  left:50%;
+  transform:translateX(-50%);
+  width:36px;
+  height:48px;
+  background:radial-gradient(
+    circle at 50% 70%,
+    #ffffaa 0%,
+    #ffcc33 30%,
+    #ff7a00 60%,
+    #cc0000 100%
+  );
+  border-radius:50% 50% 45% 45%;
+  animation:flicker .12s infinite alternate;
+  box-shadow:
+    0 0 30px rgba(255,200,80,.9),
+    0 0 70px rgba(255,120,0,.7),
+    0 0 140px rgba(255,50,0,.5);
 }
 
-@keyframes flicker {
-  0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
-  100% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+@keyframes flicker{
+  from{transform:translateX(-50%) scale(1);opacity:.9}
+  to{transform:translateX(-50%) scale(1.15);opacity:1}
 }
 
-/* CONTENT */
-section {
-  max-width: 1000px;
-  margin: auto;
-  padding: 120px 20px;
+/* ================= CONTENT ================= */
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:120px 20px;
+  position:relative;
+  z-index:2;
 }
 
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 
-.hero h1 {
-  font-size: 56px;
+.hero h1{
+  font-size:60px;
+  letter-spacing:-1px;
 }
 
-.hero p {
-  margin-top: 10px;
-  color: #bbb;
+.hero p{
+  margin-top:12px;
+  font-size:18px;
+  color:#bbb;
 }
 
-h2 {
-  margin-bottom: 20px;
-  font-size: 32px;
+h2{
+  font-size:32px;
+  margin-bottom:20px;
 }
 
-p {
-  max-width: 700px;
-  line-height: 1.7;
-  color: #ccc;
+p{
+  max-width:750px;
+  line-height:1.8;
+  color:#ccc;
 }
 
-/* WORKS */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+/* ================= SERVICES ================= */
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:30px;
 }
 
-.card {
-  background: #111;
-  border: 1px solid #222;
+.service{
+  background:#111;
+  border:1px solid #222;
+  padding:25px;
 }
 
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  filter: grayscale(100%);
+.service h3{
+  margin-bottom:10px;
+  font-size:18px;
 }
 
-.card p {
-  padding: 12px;
-  font-size: 14px;
+/* ================= WORKS ================= */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
 }
 
-/* RESUME */
-.resume {
-  border-left: 2px dashed #444;
-  padding-left: 20px;
+.card{
+  background:#111;
+  border:1px solid #222;
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 40px;
-  font-size: 14px;
-  color: #777;
-  border-top: 1px solid #222;
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  filter:grayscale(100%);
+}
+
+.card p{
+  padding:12px;
+  font-size:14px;
+}
+
+/* ================= RESUME ================= */
+.resume{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+}
+
+.resume h3{
+  margin-bottom:10px;
+}
+
+.resume ul{
+  list-style:none;
+  padding-left:0;
+}
+
+.resume li{
+  margin-bottom:10px;
+  color:#bbb;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:40px;
+  font-size:14px;
+  color:#777;
+  border-top:1px solid #222;
 }
 </style>
 </head>
@@ -158,12 +204,36 @@ footer {
 
 <!-- ABOUT -->
 <section>
-  <h2>About</h2>
+  <h2>About Me</h2>
   <p>
-    I’m Ajay, a graphic designer who believes design should be felt, not just seen.
-    This portfolio is an experiment — like entering a cave with a torch,
-    discovering ideas one by one.
+    I’m Ajay, a graphic designer with a strong passion for minimal,
+    concept-driven and experimental design. I believe great design is not
+    just seen — it is experienced. This portfolio is built like a cave,
+    where ideas are revealed only through exploration.
   </p>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <h2>What I Do</h2>
+  <div class="services">
+    <div class="service">
+      <h3>Brand Identity</h3>
+      <p>Logos, brand systems, typography and visual language.</p>
+    </div>
+    <div class="service">
+      <h3>Graphic Design</h3>
+      <p>Posters, banners, print creatives and marketing visuals.</p>
+    </div>
+    <div class="service">
+      <h3>Social Media</h3>
+      <p>High-impact creatives designed for engagement.</p>
+    </div>
+    <div class="service">
+      <h3>UI Basics</h3>
+      <p>Clean layouts, landing pages and visual UI concepts.</p>
+    </div>
+  </div>
 </section>
 
 <!-- WORKS -->
@@ -171,16 +241,20 @@ footer {
   <h2>Selected Works</h2>
   <div class="grid">
     <div class="card">
-      <img src="https://picsum.photos/600/400?random=21">
-      <p>Brand Identity</p>
+      <img src="https://picsum.photos/600/400?random=41">
+      <p>Brand Identity System</p>
     </div>
     <div class="card">
-      <img src="https://picsum.photos/600/400?random=22">
+      <img src="https://picsum.photos/600/400?random=42">
       <p>Poster Design</p>
     </div>
     <div class="card">
-      <img src="https://picsum.photos/600/400?random=23">
-      <p>Social Media</p>
+      <img src="https://picsum.photos/600/400?random=43">
+      <p>Instagram Campaign</p>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/600/400?random=44">
+      <p>Logo Exploration</p>
     </div>
   </div>
 </section>
@@ -189,9 +263,42 @@ footer {
 <section>
   <h2>Resume</h2>
   <div class="resume">
-    <p><strong>Experience:</strong> 3+ Years</p>
-    <p><strong>Skills:</strong> Branding, Posters, UI Basics, Typography</p>
-    <p><strong>Tools:</strong> Photoshop, Illustrator, Figma</p>
+    <div>
+      <h3>Experience</h3>
+      <ul>
+        <li>Graphic Designer – 3+ Years</li>
+        <li>Freelance Designer – Branding & Social Media</li>
+        <li>Worked with startups & local brands</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Skills</h3>
+      <ul>
+        <li>Branding & Visual Identity</li>
+        <li>Typography & Layout</li>
+        <li>Creative Direction</li>
+        <li>UI Visual Design</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Tools</h3>
+      <ul>
+        <li>Adobe Photoshop</li>
+        <li>Adobe Illustrator</li>
+        <li>Figma</li>
+        <li>Basic Motion Concepts</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Education</h3>
+      <ul>
+        <li>Graphic Design Course</li>
+        <li>Self-taught experimentation</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -200,18 +307,16 @@ footer {
 </footer>
 
 <script>
-const darkness = document.querySelector('.darkness');
-const torch = document.getElementById('torch');
+const darkness=document.querySelector('.darkness');
+const torch=document.getElementById('torch');
 
-document.addEventListener('mousemove', e => {
-  const x = e.clientX;
-  const y = e.clientY;
-
-  darkness.style.setProperty('--x', x + 'px');
-  darkness.style.setProperty('--y', y + 'px');
-
-  torch.style.left = x + 'px';
-  torch.style.top = y + 'px';
+document.addEventListener('mousemove',e=>{
+  const x=e.clientX;
+  const y=e.clientY;
+  darkness.style.setProperty('--x',x+'px');
+  darkness.style.setProperty('--y',(y-40)+'px');
+  torch.style.left=x+'px';
+  torch.style.top=y+'px';
 });
 </script>
 
